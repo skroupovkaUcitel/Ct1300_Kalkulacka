@@ -14,15 +14,31 @@
     <button @onclick="Podil" class="btn btn-success">Podíl (/)</button>
 </div>
 <label>Výsledek: <input @bind-value="vysledek" readonly /></label>
+<hr />
+<label>
+    <input type="checkbox" @bind-value="kontrolaPreteceni" /> 
+    Kontrola přetečení
+</label>
 
 @code {
     private short cislo1;
     private short cislo2;
     private short vysledek;
+    private bool kontrolaPreteceni;
 
     private void Soucet()
     {
-        vysledek = (short)(cislo1 + cislo2);
+        if (kontrolaPreteceni) //stačí napsat bez true, protože ten program to ví
+        {
+            checked
+            {
+                vysledek = (short)(cislo1 + cislo2); //zkus to secist a uvidis jestli to skončí chybou
+            }
+        }
+        else
+        {
+            vysledek = (short)(cislo1 + cislo2);
+        }
     }
 
     private void Rozdil()
